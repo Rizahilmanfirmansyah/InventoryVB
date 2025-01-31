@@ -1,3 +1,5 @@
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Button
 Imports Microsoft.Data.SqlClient
 
 Public Class Login
@@ -27,7 +29,7 @@ Public Class Login
             Dim a As Integer
             a = ds.Tables(0).Rows.Count
             If a = 0 Then
-                MsgBox("Username Dan Password Salah")
+                MsgBox("Username atau password yang anda masukan salah! Harap untuk diperiksa kembali.")
             Else
                 Me.Hide()
                 Dim home = New Home
@@ -40,5 +42,17 @@ Public Class Login
     Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
         UidTb.Text = ""
         PassTb.Text = ""
+    End Sub
+
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PassTb.UseSystemPasswordChar = True
+    End Sub
+
+    Private Sub Guna2CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles Guna2CheckBox1.CheckedChanged
+        If Guna2CheckBox1.CheckState = CheckState.Checked Then
+            PassTb.UseSystemPasswordChar = False
+        Else
+            PassTb.UseSystemPasswordChar = True
+        End If
     End Sub
 End Class
